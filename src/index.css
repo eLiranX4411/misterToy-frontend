@@ -1,0 +1,19 @@
+/* Setup */
+@import './assets/style/setup/vars.css';
+@import './assets/style/setup/typography.css';
+
+/* Base */
+@import './assets/style/base/base.css';
+@import './assets/style/base/layout.css';
+
+/* Components */
+@import './assets/style/cmps/AppHeader.css';
+@import './assets/style/cmps/AppFooter.css';
+@import './assets/style/cmps/UserMsg.css';
+@import './assets/style/cmps/ToyFilter.css';
+@import './assets/style/cmps/ToyList.css';
+@import './assets/style/cmps/ToyPreview.css';
+
+/* Pages */
+@import './assets/style/cmps/ToyDetails.css';
+@import './assets/style/cmps/ToyEdit.css';
