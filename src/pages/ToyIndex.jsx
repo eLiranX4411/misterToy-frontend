@@ -7,7 +7,8 @@ import { useSelector } from 'react-redux'
 import { Loader } from '../cmps/Loader.jsx'
 import { ToyList } from '../cmps/ToyList.jsx'
 import { PageinationButtons } from '../cmps/PageinationButtons.jsx'
-import { ToyFilter } from './ToyFilter.jsx'
+import { ToySort } from '../cmps/ToySort.jsx'
+import { ToyFilter } from '../cmps/ToyFilter.jsx'
 
 export function ToyIndex() {
   const toys = useSelector((storeState) => storeState.toyModule.toys)
@@ -35,6 +36,10 @@ export function ToyIndex() {
     setFilter({ ...filterBy, pageIdx: 0 })
   }
 
+  function onSetSort(sortBy) {
+    setFilter({ sortBy })
+  }
+
   function setPageIdx(pageIdx) {
     setFilter({ pageIdx })
   }
@@ -42,7 +47,12 @@ export function ToyIndex() {
   return (
     <main className='main-toys'>
       <PageinationButtons setPageIdx={setPageIdx} />
-      <ToyFilter onSetFilter={onSetFilter} />
+      <div className='filterSort-Container'>
+        <h2>Filter By</h2>
+        <ToyFilter onSetFilter={onSetFilter} filterBy={filterBy} />
+        <h4>Sort By</h4>
+        <ToySort onSetSort={onSetSort} sortBy={filterBy.sortBy} />
+      </div>
       {isLoading ? <Loader /> : <ToyList toys={toys} onRemoveToy={onRemoveToy} />}
     </main>
   )

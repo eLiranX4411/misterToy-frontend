@@ -1,0 +1,56 @@
+.toys-list-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  gap: 1rem;
+}
+
+.toys-list {
+  padding: 1rem;
+  border: 3px solid var(--primary2);
+  border-radius: 0.4rem;
+  background-color: var(--primary4);
+}
+
+.toy-preview {
+  padding: 1rem;
+}
+
+.btns-container {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 0.5rem;
+  text-align: center;
+}
+
+.btns-container button {
+  border: none;
+  background-color: var(--primary4);
+  transition: ease-in 300ms;
+  border-radius: 1rem;
+}
+
+.btns-container button:hover {
+  background-color: var(--primary1);
+}
+
+.btns-container a {
+  border: none;
+  background-color: var(--primary4);
+  transition: ease-in 300ms;
+  border-radius: 1rem;
+  width: 50px;
+}
+
+.btns-container a:hover {
+  background-color: var(--primary1);
+}
+
+.btns-container button:active,
+.btns-container a:active {
+  background-color: var(--primary3);
+}
+
+.toy-img {
+  height: 100px;
+}

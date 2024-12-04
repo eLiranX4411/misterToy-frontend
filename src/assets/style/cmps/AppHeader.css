@@ -1,6 +1,8 @@
 .main-header {
   display: grid;
   height: 80px;
+  font-family: keepcheese;
+  font-size: 1.2rem;
 }
 
 .main-header-content {
