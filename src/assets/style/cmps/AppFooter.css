@@ -1,0 +1,12 @@
+.main-footer {
+  display: grid;
+  height: 120px;
+}
+
+.main-footer-content {
+  display: flex;
+  background-color: var(--primary1);
+  justify-content: center;
+  align-items: center;
+  box-shadow: inset 0px 3px black;
+}

@@ -1,6 +1,7 @@
 /* Setup */
 @import './assets/style/setup/vars.css';
 @import './assets/style/setup/typography.css';
+@import './assets/style/setup/mq.css';
 
 /* Base */
 @import './assets/style/base/base.css';
@@ -17,3 +18,6 @@
 /* Pages */
 @import './assets/style/cmps/ToyDetails.css';
 @import './assets/style/cmps/ToyEdit.css';
+@import './assets/style/cmps/Home.css';
+@import './assets/style/cmps/About.css';
+@import './assets/style/cmps/ToyIndex.css';

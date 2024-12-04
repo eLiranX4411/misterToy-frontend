@@ -1,8 +1,7 @@
-import { eventBusService } from "../services/event-bus.service.js"
-const { useState, useEffect, useRef } = React
+import { eventBusService } from '../services/event-bus.service.js'
+import { useState, useEffect, useRef } from 'react'
 
 export function UserMsg() {
-
   const [msg, setMsg] = useState(null)
   const timeoutIdRef = useRef()
 

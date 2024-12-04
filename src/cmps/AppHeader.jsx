@@ -1,10 +1,16 @@
-import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
-
-import { useState, useRef, useEffect } from 'react'
-import { NavLink, Link } from 'react-router-dom'
-import { useNavigate } from 'react-router-dom'
-import { useSelector } from 'react-redux'
+import { NavLink } from 'react-router-dom'
 
 export function AppHeader() {
-  return <h1>App Header</h1>
+  return (
+    <header className='main-header full'>
+      <main className='main-header-content main-layout'>
+        <nav className='nav-container'>
+          <div className='logo'>misterToy</div>
+          <NavLink to='/'>Home</NavLink>
+          <NavLink to='/about'>About</NavLink>
+          <NavLink to='/toy'>Toys</NavLink>
+        </nav>
+      </main>
+    </header>
+  )
 }

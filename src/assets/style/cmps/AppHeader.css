@@ -1,0 +1,19 @@
+.main-header {
+  display: grid;
+  height: 80px;
+}
+
+.main-header-content {
+  background-color: var(--primary1);
+  align-items: center;
+  box-shadow: inset 0px -3px black;
+}
+
+.nav-container {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.nav-container div {
+  flex-grow: 1;
+}

@@ -8,7 +8,7 @@ import { ToyFilter } from './ToyFilter.jsx'
 
 export function ToyIndex() {
   return (
-    <main>
+    <main className='main-toys'>
       <h1>Index</h1>
     </main>
   )

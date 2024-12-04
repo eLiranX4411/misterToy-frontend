@@ -39,7 +39,7 @@ export function useForm(initialState, callBack) {
   return [register, fields, setFields]
 }
 
-// in component
+// --- in component ---
 // export function FilterTest() {
 //   const [register, fields] = useForm(
 //     { txt: '', price: 0, sortDir: true },
