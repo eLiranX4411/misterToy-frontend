@@ -1,6 +1,13 @@
 import { toyService } from '../../services/toy.service.js'
 import { store } from '../store.js'
-import { SET_TOYS, REMOVE_TOY, ADD_TOY, UPDATE_TOY, SET_IS_LOADING, SET_FILTER_BY } from '../reducers/toy.reducer.js'
+import {
+  SET_TOYS,
+  REMOVE_TOY,
+  ADD_TOY,
+  UPDATE_TOY,
+  SET_IS_LOADING,
+  SET_FILTER_BY
+} from '../reducers/toy.reducer.js'
 
 export function loadToys(filterBy) {
   store.dispatch({ type: SET_IS_LOADING, isLoading: true })
@@ -43,7 +50,7 @@ export function saveToy(toy) {
     })
 }
 
-export function setFilterSort(filterBy) {
+export function setFilter(filterBy) {
   const cmd = {
     type: SET_FILTER_BY,
     filterBy
