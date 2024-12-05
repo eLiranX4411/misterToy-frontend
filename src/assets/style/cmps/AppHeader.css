@@ -5,6 +5,10 @@
   font-size: 1.2rem;
 }
 
+.logo {
+  font-size: 1.8rem;
+}
+
 .main-header-content {
   background-color: var(--primary1);
   align-items: center;

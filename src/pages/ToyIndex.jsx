@@ -1,5 +1,5 @@
 import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service.js'
-import { loadToys, removeToy, saveToy, setFilter } from '../store/actions/toy.actions.js'
+import { loadToys, removeToy, setFilter } from '../store/actions/toy.actions.js'
 import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 // import { userService } from '../services/user.service.js'
@@ -37,7 +37,7 @@ export function ToyIndex() {
   }
 
   function onSetSort(sortBy) {
-    setFilter({ sortBy })
+    setFilter({ ...filterBy, sortBy })
   }
 
   function setPageIdx(pageIdx) {
@@ -51,7 +51,7 @@ export function ToyIndex() {
         <h2>Filter By</h2>
         <ToyFilter onSetFilter={onSetFilter} filterBy={filterBy} />
         <h4>Sort By</h4>
-        <ToySort onSetSort={onSetSort} sortBy={filterBy.sortBy} />
+        <ToySort onSetSort={onSetSort} sortBy={filterBy.sortBy || { type: '', desc: 1 }} />
       </div>
       {isLoading ? <Loader /> : <ToyList toys={toys} onRemoveToy={onRemoveToy} />}
     </main>

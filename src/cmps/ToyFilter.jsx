@@ -20,7 +20,7 @@ export function ToyFilter({ onSetFilter, filterBy }) {
 
     if (type === 'select-multiple') {
       value = Array.from(target.selectedOptions, (option) => option.value)
-      console.log('value:', value)
+      // console.log('value:', value)
       value = value.filter((val) => val !== '')
     }
 

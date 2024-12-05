@@ -3,13 +3,18 @@
 export function ToySort({ onSetSort, sortBy }) {
   function handleChange({ target }) {
     const field = target.name
-    const value = target.type === 'number' ? +target.value : target.value
+    const value = target.type === 'checkbox' ? (target.checked ? -1 : 1) : target.value
 
-    onSetSort((prevSort) => ({
-      ...prevSort,
-      [field]: field === 'desc' ? -prevSort.desc : value
-    }))
+    // Update the sortBy object directly
+    const updatedSort = {
+      ...sortBy,
+      [field]: value
+    }
+
+    // Pass the updated object to onSetSort
+    onSetSort(updatedSort)
   }
+
   return (
     <section className='sortBy-container'>
       <select name='type' value={sortBy.type} onChange={handleChange}>
@@ -19,7 +24,7 @@ export function ToySort({ onSetSort, sortBy }) {
       </select>
 
       <label>
-        <input type='checkbox' name='desc' checked={sortBy.desc < 0} onChange={handleChange} />
+        <input type='checkbox' name='desc' checked={sortBy.desc === -1} onChange={handleChange} />
         Descending
       </label>
     </section>

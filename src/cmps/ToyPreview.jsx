@@ -10,7 +10,7 @@ export function ToyPreview({ toy }) {
       <h3>${toy.price}</h3>
       <h3>{toy.inStock ? `Last units in stock` : `Out of stock`}</h3>
       <ul className='labels'>
-        <strong>Showing on the labels:</strong>
+        <strong>labels:</strong>
         {toy.labels.map((label, idx) => (
           <li key={idx}>{label}</li>
         ))}

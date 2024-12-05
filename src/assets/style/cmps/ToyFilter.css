@@ -36,3 +36,24 @@
   border-radius: 0.2rem;
   border: 3px solid var(--primary1);
 }
+
+.page-buttons-container {
+  display: flex;
+  padding: 1rem;
+  gap: 10px;
+}
+
+.page-buttons-container button {
+  border: 3px solid var(--primary2);
+  background-color: var(--primary1);
+  padding: 0.4rem;
+  margin: 0.5rem;
+  border-radius: 0.4rem;
+  width: 100px;
+
+  transition: ease-in 200ms;
+}
+
+.page-buttons-container button:hover {
+  background-color: var(--primary3);
+}

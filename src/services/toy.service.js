@@ -1,7 +1,16 @@
 import { httpService } from './http.service'
 
 const BASE_URL = 'toy/'
-const labels = ['On wheels', 'Box game', 'Art', 'Baby', 'Doll', 'Puzzle', 'Outdoor', 'Battery Powered']
+const labels = [
+  'On wheels',
+  'Box game',
+  'Art',
+  'Baby',
+  'Doll',
+  'Puzzle',
+  'Outdoor',
+  'Battery Powered'
+]
 
 export const toyService = {
   query,
@@ -14,7 +23,7 @@ export const toyService = {
 }
 
 function query(filterBy = {}) {
-  return httpService.get(BASE_URL, filterBy)
+  return httpService.get(BASE_URL, { params: filterBy }) // Explicitly use params
 }
 
 function getById(toyId) {

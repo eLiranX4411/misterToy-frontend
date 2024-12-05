@@ -8,16 +8,15 @@ import {
   SET_IS_LOADING,
   SET_FILTER_BY
 } from '../reducers/toy.reducer.js'
-
-export function loadToys(filterBy) {
+export function loadToys(filterBy = {}) {
   store.dispatch({ type: SET_IS_LOADING, isLoading: true })
   return toyService
-    .query(filterBy)
+    .query(filterBy || {})
     .then((toys) => {
       store.dispatch({ type: SET_TOYS, toys })
     })
     .catch((err) => {
-      console.log('Toy action -> Cannot load toys')
+      console.error('Toy action -> Cannot load toys', err)
       throw err
     })
     .finally(() => {
