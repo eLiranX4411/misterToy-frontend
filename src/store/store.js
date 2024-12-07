@@ -14,6 +14,9 @@ export const store = createStore(rootReducer, composeEnhancers())
 // * For Debugging
 window.gStore = store
 
+// console.log(store.getState().toyModule.filterBy)
+// console.log(store.getState().toyModule.toys)
+
 // store.subscribe(() => {
 //     console.log('Current state is:', store.getState())
 // })

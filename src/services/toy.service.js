@@ -23,7 +23,7 @@ export const toyService = {
 }
 
 function query(filterBy = {}) {
-  return httpService.get(BASE_URL, { params: filterBy }) // Explicitly use params
+  return httpService.get(BASE_URL, filterBy) // Explicitly use params
 }
 
 function getById(toyId) {
@@ -41,12 +41,12 @@ function save(toy) {
 
 function getDefaultFilter() {
   return {
-    txt: '',
+    name: '',
     inStock: null,
     labels: [],
     pageIdx: 0,
     sortBy: {
-      type: '',
+      type: 'name',
       desc: 1
     }
   }

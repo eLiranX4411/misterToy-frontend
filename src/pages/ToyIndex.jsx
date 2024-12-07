@@ -37,6 +37,8 @@ export function ToyIndex() {
   }
 
   function onSetSort(sortBy) {
+    // To break pointer and create copy i need to spread in an object
+    // Set the sortBy
     setFilter({ ...filterBy, sortBy })
   }
 
@@ -51,7 +53,7 @@ export function ToyIndex() {
         <h2>Filter By</h2>
         <ToyFilter onSetFilter={onSetFilter} filterBy={filterBy} />
         <h4>Sort By</h4>
-        <ToySort onSetSort={onSetSort} sortBy={filterBy.sortBy || { type: '', desc: 1 }} />
+        <ToySort onSetSort={onSetSort} sortBy={filterBy.sortBy || { type: 'name', desc: 1 }} />
       </div>
       {isLoading ? <Loader /> : <ToyList toys={toys} onRemoveToy={onRemoveToy} />}
     </main>

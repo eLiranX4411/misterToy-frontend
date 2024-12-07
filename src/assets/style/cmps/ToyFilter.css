@@ -32,6 +32,10 @@
   outline: none;
 }
 
+.filterBy-legend .labels {
+  height: 80px;
+}
+
 .sortBy-container select {
   border-radius: 0.2rem;
   border: 3px solid var(--primary1);
@@ -45,13 +49,28 @@
 
 .page-buttons-container button {
   border: 3px solid var(--primary2);
+  border-radius: 0.4rem;
   background-color: var(--primary1);
   padding: 0.4rem;
   margin: 0.5rem;
-  border-radius: 0.4rem;
   width: 100px;
 
   transition: ease-in 200ms;
+}
+
+.label-reset {
+  display: flex;
+  padding: 1rem;
+  align-items: center;
+  border: 3px solid var(--primary2);
+  background-color: var(--primary1);
+  border-radius: 0.4rem;
+
+  transition: ease-in 200ms;
+}
+
+.label-reset:hover {
+  background-color: var(--primary3);
 }
 
 .page-buttons-container button:hover {

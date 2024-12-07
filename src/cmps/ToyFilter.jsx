@@ -19,16 +19,29 @@ export function ToyFilter({ onSetFilter, filterBy }) {
     let { value, name: field, type } = target
 
     if (type === 'select-multiple') {
-      value = Array.from(target.selectedOptions, (option) => option.value)
-      // console.log('value:', value)
-      value = value.filter((val) => val !== '')
+      const selectedOptions = Array.from(target.selectedOptions, (option) => option.value)
+      value = selectedOptions.filter((val) => val !== '')
+    } else {
+      value = type === 'number' ? +value || '' : value
     }
 
-    value = type === 'number' ? +value || '' : value
-    setFilterByToEdit((prevFilter) => ({ ...prevFilter, [field]: value }))
+    setFilterByToEdit((prevFilter) => {
+      if (field === 'labels') {
+        const newLabels = Array.from(new Set([...prevFilter.labels, ...value])) // Avoid duplicates
+        return { ...prevFilter, [field]: newLabels }
+      }
+      return { ...prevFilter, [field]: value }
+    })
+  }
+
+  function resetFilter() {
+    setFilterByToEdit({ name: '', inStock: '', labels: [] })
   }
 
   const { name, inStock, labels } = filterByToEdit
+
+  // console.log(filterByToEdit)
+  // console.log(`filterBy :`, filterBy)
 
   return (
     <section className='filterBy-container'>
@@ -44,14 +57,22 @@ export function ToyFilter({ onSetFilter, filterBy }) {
           <option value='false'>Out of stock</option>
         </select>
         {/* Filter By Multiple Labels */}
-        <select multiple name='labels' value={labels || []} onChange={handleChange}>
-          <option value=''>Labels</option>
+        <select
+          className='labels'
+          multiple
+          name='labels'
+          value={labels || []}
+          onChange={handleChange}
+        >
           {toyLabels.map((label) => (
             <option key={label} value={label}>
               {label}
             </option>
           ))}
         </select>
+        <button className='label-reset' onClick={resetFilter}>
+          Reset Filter
+        </button>
       </legend>
     </section>
   )

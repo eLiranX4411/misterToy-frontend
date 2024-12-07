@@ -22,45 +22,20 @@ export const httpService = {
 }
 
 function ajax(endpoint, method = 'GET', data = null) {
-  const options = {
+  return axios({
     url: `${BASE_URL}${endpoint}`,
     method,
-    ...(method === 'GET' ? { params: data } : { data }) // Only attach data for non-GET requests
-  }
-
-  return axios(options)
+    data,
+    params: method === 'GET' ? data : null
+  })
     .then((res) => res.data)
     .catch((err) => {
-      console.error(
-        `Had Issues ${method}ing to the backend, endpoint: ${endpoint}, with data:`,
-        data
-      )
+      console.log(`Had Issues ${method}ing to the backend, endpoint: ${endpoint}, with data:`, data)
       console.dir(err)
-      if (err.response && err.response.status === 401) sessionStorage.clear()
-      return Promise.reject(err)
+      if (err.response && err.response.status === 401) {
+        sessionStorage.clear()
+        window.location.assign('/')
+      }
+      throw err
     })
 }
-
-// async function ajaxWithAsyncAwait(endpoint, method = 'GET', data = null) {
-//   try {
-//     const res = await axios({
-//       url: `${BASE_URL}${endpoint}`,
-//       method,
-//       data,
-//       params: method === 'GET' ? data : null
-//     })
-//     return res.data
-//   } catch (err) {
-//     console.log(`Had Issues ${method}ing to the backend, endpoint: ${endpoint}, with data:`, data)
-//     console.dir(err)
-//     if (err.response && err.response.status === 401) {
-//       sessionStorage.clear()
-//       window.location.assign('/')
-//       // Depends on routing startegy - hash or history
-//       // window.location.assign('/#/login')
-//       // window.location.assign('/login')
-//       // router.push('/login')
-//     }
-//     throw err
-//   }
-// }
