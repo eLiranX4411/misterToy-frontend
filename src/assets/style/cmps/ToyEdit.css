@@ -48,3 +48,19 @@
 .toy-edit-form button:hover {
   background-color: var(--primary3);
 }
+
+.add-toy-link {
+  display: flex;
+  padding: 1rem;
+  align-items: center;
+  justify-content: center;
+  border: 3px solid var(--primary2);
+  background-color: var(--primary1);
+  border-radius: 0.4rem;
+
+  transition: ease-in 200ms;
+}
+
+.add-toy-link:hover {
+  background-color: var(--primary3);
+}

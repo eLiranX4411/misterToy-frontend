@@ -9,6 +9,8 @@ import { ToyList } from '../cmps/ToyList.jsx'
 import { PageinationButtons } from '../cmps/PageinationButtons.jsx'
 import { ToySort } from '../cmps/ToySort.jsx'
 import { ToyFilter } from '../cmps/ToyFilter.jsx'
+import { toyService } from '../services/toy.service.js'
+import { Link } from 'react-router-dom'
 
 export function ToyIndex() {
   const toys = useSelector((storeState) => storeState.toyModule.toys)
@@ -55,6 +57,9 @@ export function ToyIndex() {
         <h4>Sort By</h4>
         <ToySort onSetSort={onSetSort} sortBy={filterBy.sortBy || { type: 'name', desc: 1 }} />
       </div>
+      <Link className='add-toy-link' to={`/toy/edit/${toyService.getEmptyToy()}`}>
+        Add Toy
+      </Link>
       {isLoading ? <Loader /> : <ToyList toys={toys} onRemoveToy={onRemoveToy} />}
     </main>
   )
