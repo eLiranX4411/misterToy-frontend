@@ -20,6 +20,10 @@
   gap: 1.5rem;
 }
 
+.nav-container a:hover {
+  color: var(--primary3);
+}
+
 .nav-container div {
   flex-grow: 1;
 }

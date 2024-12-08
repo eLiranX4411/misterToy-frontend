@@ -1,0 +1,20 @@
+.toy-dash-container {
+  min-height: 100dvh;
+  display: flex;
+  justify-content: center;
+  background-color: var(--primary4);
+  border-radius: 1rem;
+  margin: 1.5rem;
+  padding: 1.5rem;
+}
+
+.dashboard-chart {
+  justify-content: center;
+  height: 40%;
+  width: 40%;
+}
+
+.dashboard-chart h1 {
+  text-align: center;
+  margin: 1rem;
+}

@@ -10,6 +10,7 @@ import { ToyIndex } from './pages/ToyIndex.jsx'
 import { ToyDetails } from './pages/ToyDetails.jsx'
 import { ToyEdit } from './pages/ToyEdit.jsx'
 import { UserMsg } from './cmps/UserMsg.jsx'
+import { ToyDashboard } from './pages/ToyDashboard.jsx'
 
 export function RootCmp() {
   return (
@@ -22,8 +23,9 @@ export function RootCmp() {
               <Route element={<Home />} path='/' />
               <Route element={<AboutUs />} path='/about' />
               <Route element={<ToyIndex />} path='/toy' />
+              <Route element={<ToyDashboard />} path='/toy/dashboard' />
               <Route element={<ToyEdit />} path='/toy/edit/:toyId' />
-              <Route element={<ToyDetails />} path='/toy/:toyId' />
+              <Route element={<ToyDetails />} path='/t\oy/:toyId' />
             </Routes>
           </main>
           <AppFooter />

@@ -17,6 +17,7 @@
 
 /* Pages */
 @import './assets/style/cmps/ToyDetails.css';
+@import './assets/style/cmps/ToyDashboard.css';
 @import './assets/style/cmps/ToyEdit.css';
 @import './assets/style/cmps/Home.css';
 @import './assets/style/cmps/About.css';
