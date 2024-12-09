@@ -1,3 +1,6 @@
+import { ContactUs } from '../cmps/ContactUs'
+import { Map } from '../cmps/Map'
+
 export function AboutUs() {
   return (
     <section className='about'>
@@ -7,6 +10,9 @@ export function AboutUs() {
         dolor reprehenderit, laudantium consequatur neque numquam labore quae. Accusamus libero
         perferendis ducimus? Alias unde hic quisquam doloremque.
       </p>
+
+      <ContactUs />
+      <Map />
     </section>
   )
 }

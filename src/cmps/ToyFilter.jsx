@@ -34,7 +34,8 @@ export function ToyFilter({ onSetFilter, filterBy }) {
     })
   }
 
-  function resetFilter() {
+  function resetFilter(ev) {
+    ev.preventDefault()
     setFilterByToEdit({ name: '', inStock: '', labels: [] })
   }
 
@@ -45,7 +46,7 @@ export function ToyFilter({ onSetFilter, filterBy }) {
 
   return (
     <section className='filterBy-container'>
-      <legend className='filterBy-legend'>
+      <form className='filterBy-legend'>
         {/* Filter By Name */}
         <label htmlFor='name'>
           <input type='text' value={name} name='name' id='name' onChange={handleChange} />
@@ -73,7 +74,7 @@ export function ToyFilter({ onSetFilter, filterBy }) {
         <button className='label-reset' onClick={resetFilter}>
           Reset Filter
         </button>
-      </legend>
+      </form>
     </section>
   )
 }
