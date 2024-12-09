@@ -21,15 +21,14 @@ export function ToyIndex() {
     loadToys(filterBy)
   }, [filterBy])
 
-  function onRemoveToy(toyId) {
-    removeToy(toyId)
-      .then(() => {
-        showSuccessMsg(`Toy id: ${toyId} is removed successfully!`)
-      })
-      .catch((err) => {
-        console.log('Cannot remove toy', err)
-        showErrorMsg(`Cannot remove toy...`, err)
-      })
+  async function onRemoveToy(toyId) {
+    try {
+      await removeToy(toyId)
+      showSuccessMsg(`Toy id: ${toyId} is removed successfully!`)
+    } catch (err) {
+      console.log('Cannot remove toy', err)
+      showErrorMsg(`Cannot remove toy...`)
+    }
   }
 
   function onSetFilter(filterBy) {

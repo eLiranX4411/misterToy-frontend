@@ -8,46 +8,43 @@ import {
   SET_IS_LOADING,
   SET_FILTER_BY
 } from '../reducers/toy.reducer.js'
-export function loadToys(filterBy) {
-  store.dispatch({ type: SET_IS_LOADING, isLoading: true })
-  return toyService
-    .query(filterBy)
-    .then((toys) => {
-      // console.log('Filtered Toys:', toys)
-      store.dispatch({ type: SET_TOYS, toys })
-    })
-    .catch((err) => {
-      console.error('Toy action -> Cannot load toys', err)
-      throw err
-    })
-    .finally(() => {
-      store.dispatch({ type: SET_IS_LOADING, isLoading: false })
-    })
+
+export async function loadToys(filterBy) {
+  try {
+    store.dispatch({ type: SET_IS_LOADING, isLoading: true })
+    const toys = await toyService.query(filterBy)
+    store.dispatch({ type: SET_TOYS, toys })
+    return toys
+  } catch (err) {
+    console.error('Toy action -> Cannot load toys', err)
+    throw new Error(`Cannot load toys, try again later`)
+  } finally {
+    store.dispatch({ type: SET_IS_LOADING, isLoading: false })
+  }
 }
 
-export function removeToy(toyId) {
-  return toyService
-    .remove(toyId)
-    .then(() => {
-      store.dispatch({ type: REMOVE_TOY, toyId })
-    })
-    .catch((err) => {
-      console.log('Toy action -> Cannot remove toy')
-      throw err
-    })
+export async function removeToy(toyId) {
+  try {
+    const toyToRemove = await toyService.remove(toyId)
+    store.dispatch({ type: REMOVE_TOY, toyId })
+    return toyToRemove
+  } catch (err) {
+    console.log('Toy action -> Cannot remove toy', err)
+    throw new Error(`Cannot Remove toy, try again later`)
+  }
 }
 
-export function saveToy(toy) {
+export async function saveToy(toy) {
   const type = toy._id ? UPDATE_TOY : ADD_TOY
-  return toyService
-    .save(toy)
-    .then((toy) => {
-      store.dispatch({ type, toy })
-    })
-    .catch((err) => {
-      console.log('Toy action -> Cannot add toy')
-      throw err
-    })
+
+  try {
+    const toyToSave = await toyService.save(toy)
+    store.dispatch({ type, toy })
+    return toyToSave
+  } catch (err) {
+    console.log('Toy action -> Cannot add toy', err)
+    throw new Error(`Cannot Save toy, try again later`)
+  }
 }
 
 export function setFilter(filterBy) {

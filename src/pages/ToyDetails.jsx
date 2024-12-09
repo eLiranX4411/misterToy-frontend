@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { toyService } from '../services/toy.service'
 import { Loader } from '../cmps/Loader.jsx'
-import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
+import { showErrorMsg } from '../services/event-bus.service'
 import { useParams, Link } from 'react-router-dom'
 
 export function ToyDetails() {
@@ -13,17 +13,15 @@ export function ToyDetails() {
     loadToy()
   }, [toyId])
 
-  function loadToy() {
-    toyService
-      .getById(toyId)
-      .then((toy) => setToy(toy))
-      .catch((err) => {
-        console.log(`Cannot load Toy`, err)
-        showErrorMsg(`Cannot load Toy`, err)
-      })
+  async function loadToy() {
+    try {
+      const toy = await toyService.getById(toyId)
+      setToy(toy)
+    } catch (err) {
+      console.log(`Cannot load Toy`, err)
+      showErrorMsg(`Cannot load Toy`)
+    }
   }
-
-  // console.log(toy)
 
   if (!toy) return <Loader />
 

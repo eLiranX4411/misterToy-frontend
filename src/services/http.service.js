@@ -21,21 +21,44 @@ export const httpService = {
   }
 }
 
-function ajax(endpoint, method = 'GET', data = null) {
-  return axios({
-    url: `${BASE_URL}${endpoint}`,
-    method,
-    data,
-    params: method === 'GET' ? data : null
-  })
-    .then((res) => res.data)
-    .catch((err) => {
-      console.log(`Had Issues ${method}ing to the backend, endpoint: ${endpoint}, with data:`, data)
-      console.dir(err)
-      if (err.response && err.response.status === 401) {
-        sessionStorage.clear()
-        window.location.assign('/')
-      }
-      throw err
+async function ajax(endpoint, method = 'GET', data = null) {
+  try {
+    const res = await axios({
+      url: `${BASE_URL}${endpoint}`,
+      method,
+      data,
+      params: method === 'GET' ? data : null
     })
+    return res.data
+  } catch (err) {
+    console.log(`Had issues ${method}ing to the backend, endpoint: ${endpoint}, with data:`, data)
+    console.dir(err)
+
+    if (err.res && err.res.status === 401) {
+      sessionStorage.clear()
+      window.location.assign('/')
+      throw new Error("Can't Log")
+    }
+
+    throw err
+  }
 }
+
+// function ajax(endpoint, method = 'GET', data = null) {
+//   return axios({
+//     url: `${BASE_URL}${endpoint}`,
+//     method,
+//     data,
+//     params: method === 'GET' ? data : null
+//   })
+//     .then((res) => res.data)
+//     .catch((err) => {
+//       console.log(`Had Issues ${method}ing to the backend, endpoint: ${endpoint}, with data:`, data)
+//       console.dir(err)
+//       if (err.res && err.res.status === 401) {
+//         sessionStorage.clear()
+//         window.location.assign('/')
+//       }
+//       throw err
+//     })
+// }
