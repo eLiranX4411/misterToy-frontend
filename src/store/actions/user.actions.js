@@ -1,6 +1,6 @@
 // import { userService } from '../../services/user.service.js'
 import { store } from '../store.js'
-import { SET_USER, SET_USER_BALANCE } from '../reducers/user.reducer.js'
+import { SET_USER, IS_SIGNUP } from '../reducers/user.reducer.js'
 import { userService } from '../../services/user.service.js'
 
 export function login(credentials) {
@@ -54,28 +54,6 @@ export function updateUser(user, color, bgColor, fullname) {
     })
 }
 
-export function changeBalance(amount) {
-  return userService
-    .updateBalance(amount)
-    .then((updatedBalance) => {
-      store.dispatch({ type: SET_USER_BALANCE, balance: updatedBalance })
-      return updatedBalance
-    })
-    .catch((err) => {
-      console.log('user actions -> Cannot change balance', err)
-      throw err
-    })
-}
-
-export function addActivity(txt) {
-  return userService
-    .updateActivity(txt)
-    .then((updatedActivityUser) => {
-      store.dispatch({ type: SET_USER, user: updatedActivityUser })
-      return updatedActivityUser
-    })
-    .catch((err) => {
-      console.log('user actions -> Cannot dispatch activty', err)
-      throw err
-    })
+export function toggleIsSignUp(isSignup) {
+  store.dispatch({ type: IS_SIGNUP, isSignup })
 }

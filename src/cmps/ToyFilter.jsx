@@ -36,7 +36,8 @@ export function ToyFilter({ onSetFilter, filterBy }) {
 
   function resetFilter(ev) {
     ev.preventDefault()
-    setFilterByToEdit({ name: '', inStock: '', labels: [] })
+    const defaultFilter = toyService.getDefaultFilter()
+    setFilterByToEdit(defaultFilter)
   }
 
   const { name, inStock, labels } = filterByToEdit

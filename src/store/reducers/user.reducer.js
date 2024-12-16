@@ -1,10 +1,11 @@
 import { userService } from '../../services/user.service.js'
 
 export const SET_USER = 'SET_USER'
-// export const SET_USER_BALANCE = 'SET_USER_BALANCE'
+export const IS_SIGNUP = 'IS_SIGNUP'
 
 const userInitialState = {
-  loggedInUser: userService.getLoggedinUser()
+  loggedInUser: userService.getLoggedinUser(),
+  isSignup: false
 }
 
 export function userReducer(state = userInitialState, cmd = {}) {
@@ -12,9 +13,8 @@ export function userReducer(state = userInitialState, cmd = {}) {
     case SET_USER:
       return { ...state, loggedInUser: cmd.user }
 
-    // case SET_USER_BALANCE:
-    //   const loggedInUser = { ...state.loggedInUser, balance: cmd.balance }
-    //   return { ...state, loggedInUser }
+    case IS_SIGNUP:
+      return { ...state, isSignup: cmd.isSignup }
 
     default:
       return state

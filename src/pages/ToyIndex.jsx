@@ -17,6 +17,8 @@ export function ToyIndex() {
   const filterBy = useSelector((storeState) => storeState.toyModule.filterBy)
   const isLoading = useSelector((storeState) => storeState.toyModule.isLoading)
 
+  const pageIdx = filterBy.pageIdx || 0
+
   useEffect(() => {
     loadToys(filterBy)
   }, [filterBy])
@@ -43,13 +45,14 @@ export function ToyIndex() {
     setFilter({ ...filterBy, sortBy })
   }
 
-  function setPageIdx(pageIdx) {
-    setFilter({ pageIdx })
+  function setPageIdx(newPageIdx) {
+    if (newPageIdx < 0) return
+    setFilter({ ...filterBy, pageIdx: newPageIdx })
   }
 
   return (
     <main className='main-toys'>
-      <PageinationButtons setPageIdx={setPageIdx} />
+      <PageinationButtons setPageIdx={setPageIdx} pageIdx={pageIdx} />
       <div className='filterSort-Container'>
         <h2>Filter By</h2>
         <ToyFilter onSetFilter={onSetFilter} filterBy={filterBy} />

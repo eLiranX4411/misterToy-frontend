@@ -13,7 +13,6 @@ export async function loadToys(filterBy) {
   try {
     store.dispatch({ type: SET_IS_LOADING, isLoading: true })
     const toys = await toyService.query(filterBy)
-    console.log(`toyReducer:`, toys)
     store.dispatch({ type: SET_TOYS, toys })
     return toys
   } catch (err) {
