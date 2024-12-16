@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom'
 
 export function AppHeader() {
   const isSignup = useSelector((storeState) => storeState.userModule.isSignup)
+  const user = useSelector((storeState) => storeState.userModule.loggedInUser)
   // console.log(user)
 
   return (
@@ -16,7 +17,11 @@ export function AppHeader() {
           <NavLink to='/about'>About</NavLink>
           <NavLink to='/toy'>Toys</NavLink>
           <NavLink to='/toy/dashboard'>Dashboard</NavLink>
-          <NavLink to='/user/loginsignup'>{isSignup ? 'Login' : 'Signup'}</NavLink>
+          {!user ? (
+            <NavLink to='/user/loginsignup'>{isSignup ? 'Login' : 'Signup'}</NavLink>
+          ) : (
+            <NavLink to='/user/profile'>Profile</NavLink>
+          )}
         </nav>
       </main>
     </header>

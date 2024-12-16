@@ -8,7 +8,7 @@ export function LoginSignup() {
   const dispatch = useDispatch()
 
   function onLogin(credentials) {
-    isSignup ? _signup(credentials) : _login(credentials)
+    isSignup ? _login(credentials) : _signup(credentials)
   }
 
   function _login(credentials) {

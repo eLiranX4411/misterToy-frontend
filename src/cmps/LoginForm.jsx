@@ -2,9 +2,11 @@
 
 import { useState } from 'react'
 import { userService } from '../services/user.service.js'
+import { useNavigate } from 'react-router'
 
 export function LoginForm({ onLogin, isSignup }) {
   const [credentials, setCredentials] = useState(userService.getEmptyCredentials())
+  const navigate = useNavigate()
 
   function handleChange({ target }) {
     const { name: field, value } = target
@@ -14,6 +16,7 @@ export function LoginForm({ onLogin, isSignup }) {
   function handleSubmit(ev) {
     ev.preventDefault()
     onLogin(credentials)
+    navigate('/')
   }
 
   return (
