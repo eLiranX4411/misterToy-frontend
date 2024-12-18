@@ -19,7 +19,9 @@ export const toyService = {
   remove,
   getEmptyToy,
   getDefaultFilter,
-  getToyLabels
+  getToyLabels,
+  addToyMsg,
+  removeToyMsg
 }
 
 function query(filterBy = {}) {
@@ -37,6 +39,14 @@ function remove(toyId) {
 function save(toy) {
   const method = toy._id ? 'put' : 'post'
   return httpService[method](BASE_URL, toy)
+}
+
+function addToyMsg(toyId, msg) {
+  return httpService.post(`${BASE_URL}${toyId}/msg`, msg)
+}
+
+function removeToyMsg(toyId, msgId) {
+  return httpService.delete(`${BASE_URL}${toyId}/msg/${msgId}`)
 }
 
 function getDefaultFilter() {

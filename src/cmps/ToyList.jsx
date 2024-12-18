@@ -14,13 +14,13 @@ export function ToyList({ toys, onRemoveToy }) {
       {toys.map((toy) => (
         <li className='toys-list' key={toy._id}>
           <ToyPreview toy={toy} />
-          {user.isAdmin && (
+          {user && user.isAdmin ? (
             <div className='btns-container'>
               <Link to={`/toy/edit/${toy._id}`}>Edit</Link>
               <Link to={`/toy/${toy._id}`}>Details</Link>
               <button onClick={() => onRemoveToy(toy._id)}>Remove</button>
             </div>
-          )}
+          ) : null}
         </li>
       ))}
     </ul>
