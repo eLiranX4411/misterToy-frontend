@@ -3,55 +3,37 @@ import { store } from '../store.js'
 import { SET_USER, IS_SIGNUP } from '../reducers/user.reducer.js'
 import { userService } from '../../services/user.service.js'
 
-export function login(credentials) {
-  return userService
-    .login(credentials)
-    .then((user) => {
-      store.dispatch({ type: SET_USER, user })
-    })
-    .catch((err) => {
-      console.log('user actions -> Cannot login', err)
-      throw err
-    })
+export async function login(credentials) {
+  try {
+    const user = await userService.login(credentials)
+    store.dispatch({ type: SET_USER, user })
+    return user
+  } catch (err) {
+    console.log('user actions -> Cannot login', err)
+    throw new Error(`Problem with login action, Please try again later...`)
+  }
 }
 
-export function signup(credentials) {
-  return userService
-    .signup(credentials)
-    .then((user) => {
-      store.dispatch({ type: SET_USER, user })
-    })
-    .catch((err) => {
-      console.log('user actions -> Cannot signup', err)
-      throw err
-    })
+export async function signup(credentials) {
+  try {
+    const user = await userService.signup(credentials)
+    store.dispatch({ type: SET_USER, user })
+    return user
+  } catch (err) {
+    console.log('user actions -> Cannot signup', err)
+    throw new Error(`Problem with signup action, Please try again later...`)
+  }
 }
 
-export function logout() {
-  return userService
-    .logout()
-    .then(() => {
-      store.dispatch({ type: SET_USER, user: null })
-    })
-    .catch((err) => {
-      console.log('user actions -> Cannot logout', err)
-      throw err
-    })
-}
-
-export function updateUser(user, color, bgColor, fullname) {
-  const updatedUser = { ...user, color, bgColor, fullname }
-
-  return userService
-    .updateUserPrefs(updatedUser.color, updatedUser.bgColor, updatedUser.fullname)
-    .then((savedUser) => {
-      store.dispatch({ type: SET_USER, user: savedUser })
-      return savedUser
-    })
-    .catch((err) => {
-      console.log('Todo action -> Cannot save user prefs')
-      throw err
-    })
+export async function logout() {
+  try {
+    const user = await userService.logout()
+    store.dispatch({ type: SET_USER, user: null })
+    return user
+  } catch (err) {
+    console.log('user actions -> Cannot logout', err)
+    throw new Error(`Problem with logout action, Please try again later...`)
+  }
 }
 
 export function toggleIsSignUp(isSignup) {

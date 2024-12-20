@@ -43,22 +43,3 @@ async function ajax(endpoint, method = 'GET', data = null) {
     throw err
   }
 }
-
-// function ajax(endpoint, method = 'GET', data = null) {
-//   return axios({
-//     url: `${BASE_URL}${endpoint}`,
-//     method,
-//     data,
-//     params: method === 'GET' ? data : null
-//   })
-//     .then((res) => res.data)
-//     .catch((err) => {
-//       console.log(`Had Issues ${method}ing to the backend, endpoint: ${endpoint}, with data:`, data)
-//       console.dir(err)
-//       if (err.res && err.res.status === 401) {
-//         sessionStorage.clear()
-//         window.location.assign('/')
-//       }
-//       throw err
-//     })
-// }
