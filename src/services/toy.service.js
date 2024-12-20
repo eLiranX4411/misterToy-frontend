@@ -52,7 +52,7 @@ function removeToyMsg(toyId, msgId) {
 function getDefaultFilter() {
   return {
     name: '',
-    inStock: null,
+    inStock: 'all',
     labels: [],
     pageIdx: 0,
     sortBy: {

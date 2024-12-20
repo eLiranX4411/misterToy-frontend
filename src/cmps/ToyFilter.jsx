@@ -54,9 +54,9 @@ export function ToyFilter({ onSetFilter, filterBy }) {
         </label>
         {/* Filter By inStock */}
         <select name='inStock' value={inStock} id='inStock' onChange={handleChange}>
-          <option value=''>All</option>
-          <option value='true'>In Stock</option>
-          <option value='false'>Out of stock</option>
+          <option value='all'>All</option>
+          <option value='inStock'>In Stock</option>
+          <option value='outOfStock'>Out of stock</option>
         </select>
         {/* Filter By Multiple Labels */}
         <select
