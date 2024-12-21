@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
-import { toyService } from '../services/toy.service'
-import { saveToy } from '../store/actions/toy.actions'
-import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
+import { toyService } from '../services/toy.service.js'
+import { saveToy } from '../store/actions/toy.actions.js'
+import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service.js'
 import { useNavigate, useParams } from 'react-router-dom'
 
 export function ToyEdit() {
@@ -12,7 +12,7 @@ export function ToyEdit() {
   useEffect(() => {
     if (!toyId) return
     loadToy()
-  }, [toyId])
+  })
 
   async function loadToy() {
     try {
@@ -20,7 +20,6 @@ export function ToyEdit() {
       setToyToEdit(toy)
     } catch (err) {
       console.log(`Cannot load Toy`, err)
-      showErrorMsg(`Cannot load Toy`)
     }
   }
 
@@ -79,7 +78,15 @@ export function ToyEdit() {
       <form className='toy-edit-form' onSubmit={onSaveToy}>
         {/* Name Input */}
         <label htmlFor='name'>
-          <input type='text' value={name} name='name' id='name' onChange={handleChange} required />
+          <input
+            type='text'
+            value={name}
+            name='name'
+            id='name'
+            onChange={handleChange}
+            placeholder='Toy Name'
+            required
+          />
         </label>
 
         {/* Price Input */}
@@ -89,6 +96,7 @@ export function ToyEdit() {
             value={price}
             name='price'
             id='price'
+            placeholder='Toy Price'
             onChange={handleChange}
             required
           />

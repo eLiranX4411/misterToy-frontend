@@ -1,3 +1,37 @@
 .profile-user-cmp {
   min-height: 100dvh;
 }
+
+.profile-user-container {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--primary4);
+  max-width: 500px;
+
+  padding: 1rem;
+  margin: 1rem;
+  border: 3px solid var(--primary2);
+  border-radius: 0.5rem;
+}
+
+.profile-user-container img {
+  height: 150px;
+  width: 150px;
+}
+
+.profile-user-container button {
+  background-color: var(--primary1);
+  width: 150px;
+  border: 3px solid var(--primary3);
+  border-radius: 6px solid var(--primary1);
+  border-radius: 0.5rem;
+
+  transition: ease-in 200ms;
+
+  margin: 1.5rem;
+  padding: 0.5rem;
+}
+
+.profile-user-container button:hover {
+  background-color: var(--primary3);
+}

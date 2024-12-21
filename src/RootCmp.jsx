@@ -27,6 +27,7 @@ export function RootCmp() {
               <Route element={<ToyIndex />} path='/toy' />
               <Route element={<ToyDashboard />} path='/toy/dashboard' />
               <Route element={<ToyEdit />} path='/toy/edit/:toyId' />
+              <Route element={<ToyEdit />} path='/toy/edit' />
               <Route element={<ToyDetails />} path='/toy/:toyId' />
 
               <Route element={<LoginSignup />} path='/user/loginsignup' />

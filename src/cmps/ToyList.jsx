@@ -3,7 +3,6 @@
 import { Link } from 'react-router-dom'
 import { ToyPreview } from './ToyPreview.jsx'
 import { useSelector } from 'react-redux'
-// import { userService } from '../services/user.service.js'
 
 export function ToyList({ toys, onRemoveToy }) {
   const user = useSelector((storeState) => storeState.userModule.loggedInUser)
@@ -12,7 +11,7 @@ export function ToyList({ toys, onRemoveToy }) {
   return (
     <ul className='toys-list-container'>
       {toys.map((toy) => (
-        <li className='toys-list' key={toy._id}>
+        <li className='toys-list' key={toy._id || toy.name}>
           <ToyPreview toy={toy} />
           {user && user.isAdmin ? (
             <div className='btns-container'>

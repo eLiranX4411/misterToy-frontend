@@ -36,10 +36,20 @@ function remove(toyId) {
   return httpService.delete(BASE_URL + toyId)
 }
 
-function save(toy) {
-  const method = toy._id ? 'put' : 'post'
-  return httpService[method](BASE_URL, toy)
+async function save(toy) {
+  if (toy._id) {
+    // Update existing toy
+    return await httpService.put(`toy/${toy._id}`, toy)
+  } else {
+    // Add new toy
+    return await httpService.post(`toy`, toy)
+  }
 }
+
+// function save(toy) {
+//   const method = toy._id ? 'put' : 'post'
+//   return httpService[method](BASE_URL, toy)
+// }
 
 function addToyMsg(toyId, msg) {
   return httpService.post(`${BASE_URL}${toyId}/msg`, msg)
