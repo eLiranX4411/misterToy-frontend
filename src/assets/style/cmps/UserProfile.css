@@ -5,6 +5,8 @@
 .profile-user-container {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   background-color: var(--primary4);
   max-width: 500px;
 
@@ -19,19 +21,44 @@
   width: 150px;
 }
 
-.profile-user-container button {
+.profile-user-container p {
+  margin-block-end: 0.4rem;
+  margin-block-start: 0.4rem;
+}
+
+.logout-btn {
   background-color: var(--primary1);
   width: 150px;
   border: 3px solid var(--primary3);
   border-radius: 6px solid var(--primary1);
   border-radius: 0.5rem;
 
-  transition: ease-in 200ms;
-
-  margin: 1.5rem;
+  margin-block-start: 3rem;
   padding: 0.5rem;
 }
 
-.profile-user-container button:hover {
+.user-name-input {
+  border-radius: 0.4rem;
+  border: 3px solid var(--primary3);
+  padding: 0.4rem;
+  margin-block-end: 0.4rem;
+}
+
+.user-name-input:focus {
+  outline: none;
+  border: 3px solid var(--primary1);
+}
+
+.name-btn {
   background-color: var(--primary3);
+  width: 150px;
+  border: 3px solid var(--primary2);
+  border-radius: 6px solid var(--primary1);
+  border-radius: 0.5rem;
+
+  transition: ease 300ms;
+}
+
+.name-btn:hover {
+  background-color: var(--primary1);
 }

@@ -10,6 +10,7 @@ export const userService = {
   getById,
   getLoggedinUser,
   updateScore,
+  updatePrefs,
   getEmptyCredentials
 }
 async function login({ username, password }) {
@@ -46,6 +47,17 @@ async function logout() {
   }
 }
 
+async function updatePrefs(user) {
+  try {
+    const updatedUser = await httpService.put(`user/${user._id}`, user)
+    _setLoggedinUser(updatedUser)
+    return updatedUser
+  } catch (err) {
+    console.log(`Cannot update user prefs`, err)
+    throw new Error('Error with user prefs, Please try again later...')
+  }
+}
+
 async function updateScore(diff) {
   try {
     if (getLoggedinUser().score + diff < 0) return Promise.reject('No credit')
@@ -76,7 +88,8 @@ function _setLoggedinUser(user) {
     _id: user._id,
     fullname: user.fullname,
     score: user.score,
-    isAdmin: user.isAdmin
+    isAdmin: user.isAdmin,
+    profileColor: user.profileColor
   }
   sessionStorage.setItem(STORAGE_KEY_LOGGEDIN, JSON.stringify(userToSave))
   return userToSave

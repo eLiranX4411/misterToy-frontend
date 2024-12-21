@@ -35,6 +35,16 @@ export async function logout() {
     throw new Error(`Problem with logout action, Please try again later...`)
   }
 }
+export async function updatePrefs(user) {
+  try {
+    const updatedUser = await userService.updatePrefs(user)
+    store.dispatch({ type: 'SET_USER', user: updatedUser })
+    return updatedUser
+  } catch (err) {
+    console.error('Error updating user', err)
+    throw err
+  }
+}
 
 export function toggleIsSignUp(isSignup) {
   store.dispatch({ type: IS_SIGNUP, isSignup })
