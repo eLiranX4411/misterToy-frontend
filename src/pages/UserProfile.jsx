@@ -3,6 +3,8 @@ import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service.js'
 import { logout, updatePrefs } from '../store/actions/user.actions.js'
 import { useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
+import { ImgUploader } from '../cmps/ImgUploader.jsx'
+// import { userService } from '../services/user.service.js'
 
 export function UserProfile() {
   const user = useSelector((storeState) => storeState.userModule.loggedInUser)
@@ -60,11 +62,7 @@ export function UserProfile() {
       <main style={{ backgroundColor: bkgColor }} className='profile-user-container'>
         {user && (
           <>
-            <img
-              className='user-img'
-              src={`https://robohash.org/${user._id}?set=set5`}
-              alt='User Img'
-            />
+            <ImgUploader />
             <h2>{user.fullname} Profile</h2>
             <p>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus optio
@@ -93,4 +91,12 @@ export function UserProfile() {
       </main>
     </section>
   )
+}
+
+{
+  /* <img
+className='user-img'
+src={`https://robohash.org/${user._id}?set=set5`}
+alt='User Img'
+/> */
 }

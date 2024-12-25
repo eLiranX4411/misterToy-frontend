@@ -11,6 +11,7 @@ export const userService = {
   getLoggedinUser,
   updateScore,
   updatePrefs,
+  updateUserImg,
   getEmptyCredentials
 }
 async function login({ username, password }) {
@@ -25,7 +26,7 @@ async function login({ username, password }) {
 }
 
 async function signup({ username, password, fullname }) {
-  const user = { username, password, fullname, score: 10000 }
+  const user = { username, password, fullname, imgUrl: '', score: 10000 }
 
   try {
     const signUpUser = await httpService.post(BASE_URL + 'signup', user)
@@ -69,6 +70,17 @@ async function updateScore(diff) {
   }
 }
 
+async function updateUserImg(user) {
+  try {
+    const updatedUser = await httpService.put(`user/${user._id}`, user)
+    _setLoggedinUser(updatedUser)
+    return updatedUser
+  } catch (err) {
+    console.log(`Cannot update user image`, err)
+    throw new Error('Error with user image, Please try again later...')
+  }
+}
+
 async function getById(userId) {
   try {
     const { data } = await httpService.get('/api/user/' + userId)
@@ -89,6 +101,7 @@ function _setLoggedinUser(user) {
     fullname: user.fullname,
     score: user.score,
     isAdmin: user.isAdmin,
+    imgUrl: user.imgUrl,
     profileColor: user.profileColor
   }
   sessionStorage.setItem(STORAGE_KEY_LOGGEDIN, JSON.stringify(userToSave))
@@ -99,7 +112,8 @@ function getEmptyCredentials() {
   return {
     username: '',
     password: '',
-    fullname: ''
+    fullname: '',
+    imgUrl: ''
   }
 }
 

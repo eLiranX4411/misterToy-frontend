@@ -46,6 +46,17 @@ export async function updatePrefs(user) {
   }
 }
 
+export async function updateUserImg(user) {
+  try {
+    const updatedUser = await userService.updateUserImg(user)
+    store.dispatch({ type: 'SET_USER', user: updatedUser })
+    return updatedUser
+  } catch (err) {
+    console.error('Error updating user', err)
+    throw err
+  }
+}
+
 export function toggleIsSignUp(isSignup) {
   store.dispatch({ type: IS_SIGNUP, isSignup })
 }
