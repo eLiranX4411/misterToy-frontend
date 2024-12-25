@@ -19,7 +19,9 @@ export function ToyList({ toys, onRemoveToy }) {
               <Link to={`/toy/${toy._id}`}>Details</Link>
               <button onClick={() => onRemoveToy(toy._id)}>Remove</button>
             </div>
-          ) : null}
+          ) : (
+            <div></div>
+          )}
         </li>
       ))}
     </ul>

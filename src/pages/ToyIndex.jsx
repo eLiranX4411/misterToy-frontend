@@ -63,7 +63,9 @@ export function ToyIndex() {
         <Link className='add-toy-link' to={`/toy/edit`}>
           Add Toy
         </Link>
-      ) : null}
+      ) : (
+        <div></div>
+      )}
       {isLoading ? <Loader /> : <ToyList toys={toys} onRemoveToy={onRemoveToy} />}
     </main>
   )
