@@ -9,24 +9,24 @@ export function ImgUploader() {
   const [imgData, setImgData] = useState(user.imgUrl)
   const [isUploading, setIsUploading] = useState(false)
 
+  console.log(user)
+
   async function uploadImg(ev) {
     ev.preventDefault()
     console.log('🚀 ~ uploadImg ~ ev:', ev)
     setIsUploading(true)
 
     const { secure_url } = await uploadService.uploadImg(ev)
-    setImgData({ imgUrl: secure_url })
-
     await updateUserImg({ ...user, imgUrl: secure_url })
+
+    setImgData({ imgUrl: secure_url })
     setIsUploading(false)
   }
 
   function getUploadLabel() {
-    if (imgData.imgUrl) return 'Change picture?'
+    if (imgData) return 'Change picture?'
     return isUploading ? <Loader /> : 'Upload Image'
   }
-
-  console.log(imgData)
 
   return (
     <div>
@@ -39,7 +39,7 @@ export function ImgUploader() {
       >
         <img
           src={
-            imgData.imgUrl ||
+            imgData ||
             'https://res.cloudinary.com/dv7uswhcz/image/upload/f_auto,q_auto/nersbxk6gursqfexji42'
           }
           style={{ width: '200px', height: '200px', cursor: 'pointer' }}

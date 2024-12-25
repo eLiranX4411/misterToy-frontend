@@ -1,4 +1,3 @@
-// import { userService } from '../../services/user.service.js'
 import { store } from '../store.js'
 import { SET_USER, IS_SIGNUP } from '../reducers/user.reducer.js'
 import { userService } from '../../services/user.service.js'
@@ -35,6 +34,7 @@ export async function logout() {
     throw new Error(`Problem with logout action, Please try again later...`)
   }
 }
+
 export async function updatePrefs(user) {
   try {
     const updatedUser = await userService.updatePrefs(user)

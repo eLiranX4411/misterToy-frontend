@@ -9,6 +9,7 @@ export function ToyDetails() {
   const [toy, setToy] = useState(null)
   const [msg, setMsg] = useState('')
   const user = useSelector((storeState) => storeState.userModule.loggedInUser)
+  const reviews = useSelector((storeState) => storeState.reviewModule.reviews)
   const { toyId } = useParams()
 
   useEffect(() => {

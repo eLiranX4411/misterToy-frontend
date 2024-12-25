@@ -1,3 +1,4 @@
+import { reviewReducer } from './reducers/review.reducer.js'
 import { toyReducer } from './reducers/toy.reducer.js'
 import { userReducer } from './reducers/user.reducer.js'
 
@@ -5,7 +6,8 @@ import { combineReducers, compose, legacy_createStore as createStore } from 'red
 
 const rootReducer = combineReducers({
   toyModule: toyReducer,
-  userModule: userReducer
+  userModule: userReducer,
+  reviewModule: reviewReducer
 })
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose

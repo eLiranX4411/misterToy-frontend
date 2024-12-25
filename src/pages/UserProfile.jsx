@@ -20,9 +20,9 @@ export function UserProfile() {
 
   async function onLogout() {
     try {
+      navigate('/')
       await logout()
       showSuccessMsg('Logout successfully')
-      navigate('/')
     } catch (err) {
       console.log(`problem with logout`, err)
       showErrorMsg('Oops try again')
@@ -35,7 +35,7 @@ export function UserProfile() {
 
     try {
       await updatePrefs({ ...user, profileColor: newColor })
-      showSuccessMsg('Profile color updated!')
+      // showSuccessMsg('Profile color updated!')
     } catch (err) {
       console.error('Failed to update profile color', err)
       showErrorMsg('Could not save color, please try again')
