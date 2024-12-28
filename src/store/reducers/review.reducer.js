@@ -1,10 +1,14 @@
+import { reviewService } from '../../services/review.service.js'
+
 export const SET_REVIEWS = 'SET_REVIEWS'
 export const ADD_REVIEW = 'ADD_REVIEW'
 export const REMOVE_REVIEW = 'REMOVE_REVIEW'
 export const UPDATE_REVIEW = 'UPDATE_REVIEW'
+export const SET_FILTER_BY = 'SET_FILTER_BY'
 
 const initialState = {
-  reviews: []
+  reviews: [],
+  filterBy: reviewService.getDefaultFilter()
 }
 
 export function reviewReducer(state = initialState, cmd = {}) {
@@ -21,6 +25,11 @@ export function reviewReducer(state = initialState, cmd = {}) {
         reviews: state.reviews.map((review) =>
           review._id === cmd.review._id ? cmd.review : review
         )
+      }
+    case SET_FILTER_BY:
+      return {
+        ...state,
+        filterBy: cmd.filterBy
       }
     default:
       return state

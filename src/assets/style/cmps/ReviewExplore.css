@@ -1,0 +1,22 @@
+.review-explore {
+  min-height: 100dvh;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-template-rows: repeat(auto-fill, minmax(200px, 1fr));
+  margin: 1rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.review-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem;
+  padding: 1rem;
+
+  background-color: var(--primary4);
+  border: 3px solid var(--primary1);
+  border-radius: 0.5rem;
+}

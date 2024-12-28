@@ -3,7 +3,8 @@ import { httpService } from './http.service.js'
 export const reviewService = {
   query,
   remove,
-  add
+  add,
+  getDefaultFilter
 }
 
 function query(filterBy) {
@@ -17,4 +18,14 @@ async function remove(reviewId) {
 
 async function add({ txt, aboutToyId, byUserId }) {
   return await httpService.post(`review`, { txt, aboutToyId, byUserId })
+}
+
+function getDefaultFilter() {
+  return {
+    name: '',
+    sortBy: {
+      type: 'name',
+      desc: 1
+    }
+  }
 }

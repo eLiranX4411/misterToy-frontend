@@ -20,7 +20,10 @@ export function AppHeader() {
           {!user ? (
             <NavLink to='/user/loginsignup'>{isSignup ? 'Login' : 'Signup'}</NavLink>
           ) : (
-            <NavLink to='/user/profile'>Profile</NavLink>
+            <>
+              <NavLink to='/reviews'>ReviewExplore</NavLink>
+              <NavLink to='/user/profile'>Profile</NavLink>
+            </>
           )}
         </nav>
       </main>

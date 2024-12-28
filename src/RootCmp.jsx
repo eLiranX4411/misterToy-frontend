@@ -13,6 +13,7 @@ import { UserMsg } from './cmps/UserMsg.jsx'
 import { ToyDashboard } from './pages/ToyDashboard.jsx'
 import { LoginSignup } from './pages/LoginSignup.jsx'
 import { UserProfile } from './pages/UserProfile.jsx'
+import { ReviewExplore } from './pages/ReviewExplore.jsx'
 
 export function RootCmp() {
   return (
@@ -29,6 +30,7 @@ export function RootCmp() {
               <Route element={<ToyEdit />} path='/toy/edit/:toyId' />
               <Route element={<ToyEdit />} path='/toy/edit' />
               <Route element={<ToyDetails />} path='/toy/:toyId' />
+              <Route element={<ReviewExplore />} path='/reviews' />
 
               <Route element={<LoginSignup />} path='/user/loginsignup' />
               <Route element={<UserProfile />} path='/user/profile' />

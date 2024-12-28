@@ -59,7 +59,7 @@ export function UserProfile() {
     }
   }
 
-  console.log(reviews)
+  // console.log(reviews)
 
   return (
     <section className='profile-user-cmp'>
