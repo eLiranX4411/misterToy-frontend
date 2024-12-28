@@ -1,13 +1,15 @@
 import { useSelector } from 'react-redux'
 import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service.js'
 import { logout, updatePrefs } from '../store/actions/user.actions.js'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { ImgUploader } from '../cmps/ImgUploader.jsx'
 // import { userService } from '../services/user.service.js'
 
 export function UserProfile() {
   const user = useSelector((storeState) => storeState.userModule.loggedInUser)
+  const reviews = useSelector((storeState) => storeState.reviewModule.reviews)
+
   const [bkgColor, setBkgColor] = useState('#b1f0f7')
   const [userName, setUserName] = useState(user.fullname)
   const navigate = useNavigate()
@@ -57,6 +59,8 @@ export function UserProfile() {
     }
   }
 
+  console.log(reviews)
+
   return (
     <section className='profile-user-cmp'>
       <main style={{ backgroundColor: bkgColor }} className='profile-user-container'>
@@ -64,6 +68,7 @@ export function UserProfile() {
           <>
             <ImgUploader />
             <h2>{user.fullname} Profile</h2>
+            <h4>Score: {user.score}</h4>
             <p>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus optio
               perspiciatis magnam laudantium deserunt quo eaque hic, minima in quia dolorem libero
@@ -85,6 +90,27 @@ export function UserProfile() {
         <button className='name-btn' onClick={handleNameChange}>
           Change Name
         </button>
+
+        <h3>{user.fullname} Reviews:</h3>
+        {reviews.map(
+          (review) => (
+            console.log(review),
+            (
+              <div key={review._id}>
+                <p>
+                  You write this <strong>review txt: {review.txt}</strong> On this:{' '}
+                  <Link
+                    style={{ backgroundColor: `yellow`, padding: `5px` }}
+                    to={`/toy/${review.aboutToy._id}`}
+                  >
+                    TOY
+                  </Link>
+                </p>
+              </div>
+            )
+          )
+        )}
+
         <button className='logout-btn' onClick={onLogout}>
           Logout
         </button>

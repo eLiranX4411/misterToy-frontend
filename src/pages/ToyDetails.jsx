@@ -1,21 +1,27 @@
 import { useEffect, useState } from 'react'
+import { useSelector } from 'react-redux'
+import { useParams, Link } from 'react-router-dom'
+
 import { toyService } from '../services/toy.service.js'
 import { Loader } from '../cmps/Loader.jsx'
+import { loadReviews, addReview, removeReview } from '../store/actions/review.actions.js'
 import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
-import { useParams, Link } from 'react-router-dom'
-import { useSelector } from 'react-redux'
 
 export function ToyDetails() {
-  const [toy, setToy] = useState(null)
-  const [msg, setMsg] = useState('')
   const user = useSelector((storeState) => storeState.userModule.loggedInUser)
   const reviews = useSelector((storeState) => storeState.reviewModule.reviews)
+
+  const [toy, setToy] = useState(null)
+  const [msg, setMsg] = useState('')
+  const [review, setReview] = useState('')
+
   const { toyId } = useParams()
 
   useEffect(() => {
     // console.log(toyId)
     if (!toyId) return
     loadToy()
+    loadReviews()
   }, [toyId])
 
   async function loadToy() {
@@ -62,11 +68,42 @@ export function ToyDetails() {
     }
   }
 
+  async function onAddToyReview(ev) {
+    ev.preventDefault()
+    if (!review.trim()) return showErrorMsg('Review cannot be empty')
+    if (!user) return showErrorMsg('You must be logged in to leave a review')
+
+    const newReview = {
+      txt: review, // Review text entered by the user
+      aboutToyId: toy._id, // The ID of the toy being reviewed
+      byUserId: user._id // Add the logged-in user's ID
+    }
+
+    try {
+      await addReview(newReview) // Dispatch the action to add the review
+      setReview('') // Clear the input field
+      showSuccessMsg('Review added successfully!')
+    } catch (err) {
+      console.log(`Cannot add review`, err)
+      showErrorMsg('Failed to add review')
+    }
+  }
+
+  async function onRemoveToyReview(reviewId) {
+    try {
+      await removeReview(reviewId) // Dispatch the action to remove the review
+      showSuccessMsg('Review removed successfully!')
+    } catch (err) {
+      console.log(`Cannot remove review`, err)
+      showErrorMsg('Failed to remove review')
+    }
+  }
+
   if (!toy) return <Loader />
 
   return (
-    <section className='toy-details-container'>
-      <main className='toy-details'>
+    <main className='toy-details-container'>
+      <section className='toy-details'>
         <h1>{toy.name} Details:</h1>
         <img className='toy-img' src={`https://robohash.org/${toy._id}?set=set4`} alt='Toy Img' />
         <h1>
@@ -84,8 +121,9 @@ export function ToyDetails() {
         <button>
           <Link to='/toy'>Back</Link>
         </button>
-      </main>
+      </section>
 
+      {/* Message Section */}
       <section className='msgs-section'>
         {user && (
           <form className='toy-msg-container' onSubmit={onAddToyMsg}>
@@ -116,6 +154,36 @@ export function ToyDetails() {
           </section>
         )}
       </section>
-    </section>
+
+      {/* Review Section */}
+      <section className='reviews-section'>
+        {user && (
+          <form className='review-container' onSubmit={onAddToyReview}>
+            <input
+              type='text'
+              name='review'
+              value={review}
+              onChange={(ev) => setReview(ev.target.value)}
+              placeholder='Enter your review'
+            />
+            <button type='submit'>Add Review</button>
+          </form>
+        )}
+
+        {reviews
+          .filter((r) => r.aboutToy._id === toy._id)
+          .map((review) => (
+            <li key={review._id} className='review-item'>
+              <div>
+                <strong>{review.byUser.fullname}:</strong> {review.txt}
+                <div className='rating'>{'⭐⭐⭐⭐⭐'}</div>
+              </div>
+              {user._id === review.byUser._id && (
+                <button onClick={() => onRemoveToyReview(review._id)}>Remove Review</button>
+              )}
+            </li>
+          ))}
+      </section>
+    </main>
   )
 }

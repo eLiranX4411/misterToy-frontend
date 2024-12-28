@@ -9,8 +9,6 @@ export function ImgUploader() {
   const [imgData, setImgData] = useState(user.imgUrl)
   const [isUploading, setIsUploading] = useState(false)
 
-  console.log(user)
-
   async function uploadImg(ev) {
     ev.preventDefault()
     console.log('🚀 ~ uploadImg ~ ev:', ev)

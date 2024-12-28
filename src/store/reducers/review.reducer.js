@@ -7,19 +7,19 @@ const initialState = {
   reviews: []
 }
 
-export function reviewReducer(state = initialState, action = {}) {
-  switch (action.type) {
+export function reviewReducer(state = initialState, cmd = {}) {
+  switch (cmd.type) {
     case SET_REVIEWS:
-      return { ...state, reviews: action.reviews }
+      return { ...state, reviews: cmd.reviews }
     case ADD_REVIEW:
-      return { ...state, reviews: [...state.reviews, action.review] }
+      return { ...state, reviews: [...state.reviews, cmd.review] }
     case REMOVE_REVIEW:
-      return { ...state, reviews: state.reviews.filter((review) => review._id !== action.reviewId) }
+      return { ...state, reviews: state.reviews.filter((review) => review._id !== cmd.reviewId) }
     case UPDATE_REVIEW:
       return {
         ...state,
         reviews: state.reviews.map((review) =>
-          review._id === action.review._id ? action.review : review
+          review._id === cmd.review._id ? cmd.review : review
         )
       }
     default:

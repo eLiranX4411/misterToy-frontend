@@ -1,5 +1,5 @@
 import { store } from '../store.js'
-import { SET_USER, IS_SIGNUP } from '../reducers/user.reducer.js'
+import { SET_USER, IS_SIGNUP, SET_SCORE } from '../reducers/user.reducer.js'
 import { userService } from '../../services/user.service.js'
 
 export async function login(credentials) {
@@ -42,6 +42,17 @@ export async function updatePrefs(user) {
     return updatedUser
   } catch (err) {
     console.error('Error updating user', err)
+    throw err
+  }
+}
+
+export async function updateScore(diff) {
+  try {
+    const updatedUserScore = await userService.updateScore(diff)
+    store.dispatch({ type: 'SET_SCORE', user: updatedUserScore })
+    return updatedUserScore
+  } catch (err) {
+    console.error('Error updating score', err)
     throw err
   }
 }

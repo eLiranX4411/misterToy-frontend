@@ -15,6 +15,6 @@ async function remove(reviewId) {
   await httpService.delete(`review/${reviewId}`)
 }
 
-async function add({ txt, aboutToyId }) {
-  return await httpService.post(`review`, { txt, aboutToyId })
+async function add({ txt, aboutToyId, byUserId }) {
+  return await httpService.post(`review`, { txt, aboutToyId, byUserId })
 }
