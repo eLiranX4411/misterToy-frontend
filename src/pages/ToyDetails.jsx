@@ -121,6 +121,9 @@ export function ToyDetails() {
         <button>
           <Link to='/toy'>Back</Link>
         </button>
+        <button>
+          <Link to={`/toy/chat/${toy._id}`}>Chat</Link>
+        </button>
       </section>
 
       {/* Message Section */}
@@ -147,7 +150,9 @@ export function ToyDetails() {
                   <p>
                     <strong>{msg.by.fullname}:</strong> {msg.txt}
                   </p>
-                  <button onClick={() => onRemoveToyMsg(msg.id)}>Remove Msg</button>
+                  {user && user._id === msg.by._id && (
+                    <button onClick={() => onRemoveToyMsg(msg.id)}>Remove Msg</button>
+                  )}
                 </li>
               ))}
             </ul>
@@ -157,6 +162,7 @@ export function ToyDetails() {
 
       {/* Review Section */}
       <section className='reviews-section'>
+        <h4>Reviews:</h4>
         {user && (
           <form className='review-container' onSubmit={onAddToyReview}>
             <input
@@ -178,7 +184,7 @@ export function ToyDetails() {
                 <strong>{review.byUser.fullname}:</strong> {review.txt}
                 <div className='rating'>{'⭐⭐⭐⭐⭐'}</div>
               </div>
-              {user._id === review.byUser._id && (
+              {user && user._id === review.byUser._id && (
                 <button onClick={() => onRemoveToyReview(review._id)}>Remove Review</button>
               )}
             </li>

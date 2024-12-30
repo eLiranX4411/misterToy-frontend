@@ -14,6 +14,7 @@ import { ToyDashboard } from './pages/ToyDashboard.jsx'
 import { LoginSignup } from './pages/LoginSignup.jsx'
 import { UserProfile } from './pages/UserProfile.jsx'
 import { ReviewExplore } from './pages/ReviewExplore.jsx'
+import { ChatRoom } from './cmps/ChatRoom.jsx'
 
 export function RootCmp() {
   return (
@@ -31,6 +32,7 @@ export function RootCmp() {
               <Route element={<ToyEdit />} path='/toy/edit' />
               <Route element={<ToyDetails />} path='/toy/:toyId' />
               <Route element={<ReviewExplore />} path='/reviews' />
+              <Route element={<ChatRoom />} path='/toy/chat/:toyId' />
 
               <Route element={<LoginSignup />} path='/user/loginsignup' />
               <Route element={<UserProfile />} path='/user/profile' />
